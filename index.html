@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="PocoLoco" /> 
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://greentfrapp.github.io/pocoloco" />
+  <meta property="og:description" content="PocoLoco demo." />
+  <title>PocoLoco</title>
+  <link rel="stylesheet" href="https://unpkg.com/buefy/dist/buefy.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Open+Sans&display=swap" rel="stylesheet">  
+  <link rel="stylesheet" href="./main.css">
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/buefy/dist/buefy.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.0.1/d3.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <section class="section main">
+      <svg class="background-blob" id="demo" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="path1" fill="rgba(255, 255, 0, 0.7)"></path>
+        <path id="path2" fill="rgba(0, 255, 255, 0.7)"></path>
+        <path id="path3" fill="rgba(255, 0, 255, 0.2)"></path>
+      </svg>
+      <nav class="level">
+        <!-- Left side -->
+        <div class="level-left">
+          <div class="level-item">
+            <h1 class="title">taper</h1>
+          </div>
+        </div>
+        <!-- Right side -->
+        <div class="level-right">
+          <p class="level-item is-size-5 mx-5"><a>Datasets</a></p>
+          <p class="level-item is-size-5 mx-5"><a>About</a></p>
+          <p class="level-item is-size-5 mx-5"><a>Login</a></p>
+        </div>
+      </nav>
+      <section class="section columns is-vcentered">
+        <div class="column">
+          <div class="columns">
+            <div class="column is-6 is-two-thirds-tablet">
+              <p class="title is-0">
+                Publishing datasets made easy
+              </p>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column is-5 is-size-5">
+              <p class="block">
+                We are an open-source platform helping researchers release datasets.
+              </p>
+              <p class="block">
+                Focus on the research, let Taper do the rest.
+              </p>
+              <button class="button is-rounded is-danger">Learn more</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </div>
+  <script src="./main.js"></script>
+</body>
+</html>

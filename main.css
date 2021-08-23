@@ -1,0 +1,52 @@
+#app {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.title {
+    font-family: 'Comfortaa', 'Open Sans', sans-serif;
+}
+
+.title.is-0 {
+    margin-top: 2rem;
+    font-size: 5rem;
+}
+
+a {
+    color: #3d3d3d;
+}
+
+section.main {
+    position: relative;
+}
+
+section.main nav,
+section.main section {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.red-dark-bg {
+    background-color: #D02917 !important;
+    color: #FFFFFF !important;
+}
+
+.background-blob {
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+@media only screen and (max-width: 600px) {
+    .background-blob {
+        height: 150vh;
+    }
+    .title.is-0 {
+        margin-top: 1rem;
+        font-size: 2.5rem;
+    }
+}
