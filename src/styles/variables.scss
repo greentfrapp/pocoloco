@@ -1,0 +1,42 @@
+// // Switches
+// $switch-track-dense-inset-height: 16px;
+// $switch-track-dense-inset-width: 28px;
+// // $switch-thumb-dense-height: 10px;
+// // $switch-thumb-dense-width: 10px;
+// $switch-dirty-offset-x: 12px;
+// $switch-track-inset-width: 28px;
+
+
+
+
+
+// $switch-track-x: 2px !default;
+
+// $switch-track-dense-top: calc(50% - 12px) !default;
+// $switch-track-dense-inset-height: 22px !default;
+// $switch-track-dense-inset-width: 32px;
+
+// $switch-dirty-offset-x: 20px !default;
+
+// $switch-thumb-dense-height: 10px !default;
+// $switch-thumb-dense-width: 10px !default;
+// $switch-thumb-top: calc(50% - 5px) !default;
+// $switch-disabled-opacity: 0.5;
+// $switch-track-inset-opacity: 1;
+
+
+$text-field-details-min-height: 0px !important;
+
+::v-deep .v-text-field__details {
+  height: 0;
+  display: none;
+}
+
+::v-deep .v-messages {
+  display: none;
+  height: 0;
+}
+
+::v-deep .v-input__slot {
+  margin-bottom: 0;
+}
