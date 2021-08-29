@@ -6,7 +6,6 @@
     </p>
 
     <v-row justify="start" >
-      
       <v-col cols="3">
         <div class="panel">
 
@@ -20,6 +19,7 @@
               class="my-0 py-0 input-color-field"
               type="string"
               :hide-details="false"
+              :change="$emit('set-color', color)"
             >
             {{ color }}
             </v-text-field>   
@@ -32,8 +32,8 @@
 
             <v-slider
               v-model="curve"
-              :max="200"
-              class="align-center"
+              :max="1000000"
+              class="align-center"              
             >
               <template v-slot:append>
                 <v-text-field
@@ -51,8 +51,9 @@
 
             <v-slider
               v-model="speed"
-              :max="5000"
+              :max="20000"
               class="align-center"
+              :change="$emit('set-speed', speed)"
             >
               <template v-slot:append>
                 <v-text-field
@@ -100,7 +101,7 @@ export default {
   data() {
     return {
       opacity: 100,
-      speed: 1,
+      speed: 20000,
       curve: 100,    
       color: '#FFFF00',  
       arrow: 'mdi-chevron-double-up',
