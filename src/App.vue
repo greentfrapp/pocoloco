@@ -1,17 +1,18 @@
 <template>
   <v-app>
-    <Landing />
+    <router-view>
+    <Main/>
+    </router-view>
   </v-app>
-
 </template>
 
-<script>  
-import Landing from '@/components/Landing'
+<script>
+import Main from '@/components/Main'
 
 export default {
   name: 'App',
   components: {
-    Landing
+    Main
   },
   data: () => ({
     //
@@ -22,4 +23,8 @@ export default {
 <style lang="scss">
 @import 'styles/_grid.scss';
 @import 'styles/_typography.scss';
+
+.theme--light.v-application {
+  background: none !important;
+}
 </style>
