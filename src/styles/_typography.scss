@@ -1,0 +1,141 @@
+$font-logo: 'Raleway', sans-serif;
+$font-secondary: 'Roboto', sans-serif;
+
+.font-secondary {
+  font-family: $font-secondary !important;
+}
+
+// typography
+.text-hero {
+  font-size: 6rem;
+  line-height: 6rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  font-family: $font-secondary;
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 48px;
+    line-height: 56px;
+  }
+}
+
+.font-simple {
+  font-family: 'Nixie One', sans-serif;
+}
+
+.font-soph {
+  font-family: 'Abril Fatface', sans-serif;
+}
+
+.text-card-title-1 {
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-family: $font-secondary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 36px;
+    line-height: 36px;
+  }
+}
+
+.text-lede {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.25rem;
+  font-family: $font-logo;
+  color: white;
+  -webkit-text-fill-color: white;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: white;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 28px;
+    line-height: 32px;
+  }
+}
+
+.text-section {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: $font-secondary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.text-card-title-2 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: $font-secondary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.text-nav {
+  font-size: 18px;
+  line-height: 20px;
+  font-weight: 500;
+  font-family: $font-secondary;
+  text-transform: uppercase;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+
+.text-nav-anchor {
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  font-family: $font-secondary;
+  text-transform: uppercase;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.text-reference {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-family: $font-secondary;
+  text-transform: uppercase;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+.text-body {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 300;
+  font-family: $font-secondary;
+
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+button span.v-btn__content {
+  font-family: $font-secondary;
+  font-weight: bold;
+}

@@ -1,0 +1,81 @@
+.container {
+  @media only screen and (min-width: #{map-get($grid-breakpoints, 'lg')}) {
+    max-width: map-get($grid-breakpoints, 'md') * 1;
+    padding: 0;
+  }
+  
+  @media only screen and (min-width: map-get($grid-breakpoints, 'xl')) {
+    max-width: map-get($grid-breakpoints, 'lg') * 1.034 !important;
+    padding: 0;    
+  }
+}
+
+// @mixin for-breakpoint($breakpoint) {
+//   @if $breakpoint == 'xs-only' {
+//       @media only screen and (max-width: #{map-get($grid-breakpoints, 'sm') - 1}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'sm-only' {
+//       @media only screen and (min-width: #{map-get($grid-breakpoints, 'sm')}) and (max-width: #{map-get($grid-breakpoints, 'md') - 1}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'sm-and-down' {
+//       @media only screen and (max-width: #{map-get($grid-breakpoints, 'md') - 1}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'sm-and-up' {
+//       @media only screen and (min-width: #{map-get($grid-breakpoints, 'sm')}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'md-only' {
+//       @media only screen and (min-width: #{map-get($grid-breakpoints, 'md')}) and (max-width: #{map-get($grid-breakpoints, 'lg') - 1}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'md-and-down' {
+//       @media only screen and (max-width: #{map-get($grid-breakpoints, 'lg') - 1}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'md-and-up' {
+//       @media only screen and (min-width: #{map-get($grid-breakpoints, 'md')}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'lg-only' {
+//       @media only screen and (min-width: #{map-get($grid-breakpoints, 'lg')}) and (max-width: #{map-get($grid-breakpoints, 'xl') - 1}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'lg-and-down' {
+//       @media only screen and (max-width: #{map-get($grid-breakpoints, 'xl') - 1}) {
+//           @content;
+//       }
+//   } @else if $breakpoint == 'lg-and-up' {
+//       @media only screen and (min-width: #{map-get($grid-breakpoints, 'lg')}) {
+//           @content;
+//       }
+
+//   } @else if $breakpoint == 'xl-only' {
+//       @media only screen and (min-width: #{map-get($grid-breakpoints, 'xl')}) {
+//           @content;
+//       }
+//   }
+// }
+
+// .row {
+//   margin: 0 (-$grid-gutter);
+
+//   > .col,
+//   > [class*="col-"] {
+//     padding: 0 $grid-gutter;
+//   }
+
+  // mobile and tablet
+  // @include for-breakpoint('sm-and-down') {
+  //   margin: 0 (-$grid-gutter * 0.75) / 2;
+
+  //   > .col,
+  //   > [class*="col-"] {
+  //     padding: 0 ($grid-gutter * 0.75) / 2; // 12px
+  //   }
+  // }
+// }
+
+// $offset-top: 100px;
