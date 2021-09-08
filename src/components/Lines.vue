@@ -7,19 +7,30 @@
     <v-container>
       <input type="text" :value="paths[0].fill" @change="update"/>
     </v-container>
+    <CardOptions>
+      <Slider v-model="value" icon="mdi-sine-wave" />
+      <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 />
+      <Slider v-model="value" icon="mdi-opacity" />
+    </CardOptions>
   </div>
 </template>
 
 <script>
-// import d3 from 'd3'
+import Slider from '@/components/ui/Slider'
+import CardOptions from '@/components/ui/CardOptions'
 
 export default {
   name: 'Main',
   props: {
     msg: String
   },
+  components: {
+    Slider,
+    CardOptions,
+  },
   data () {
     return {
+      value: 0,
       paths: [
         {
           id: 'path0',
@@ -46,7 +57,11 @@ export default {
       ]
     }
   },
-  computed: {},
+  computed: {
+    speedValue () {
+      return 100000 / this.paths[2].duration
+    }
+  },
   mounted () {
     this.paths.forEach(p => this.initBg(p.id, p.duration, p.start, p.end))
   },
@@ -65,6 +80,10 @@ export default {
     },
     update (event) {
       this.paths[0].fill = event.target.value
+    },
+    updateSpeed (event) {
+      this.paths[2].duration = 100000 / event
+      this.paths.forEach(p => this.initBg(p.id, p.duration, p.start, p.end))
     }
   }
 }
