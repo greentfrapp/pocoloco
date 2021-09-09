@@ -5,99 +5,16 @@
       <v-icon class="arrow" color="#818181">{{ arrow }}</v-icon>
     </p>
 
-    <v-row justify="start" >
-      <v-col cols="3">
-        <div class="panel">
-
-          <div class="input mb-3">
-            <v-icon color="#818181" style="`font-size: 14px`" class="mr-3">mdi-palette</v-icon>
-
-            <v-text-field
-              v-model="color"
-              dense
-              rounded
-              class="my-0 py-0 input-color-field"
-              type="string"
-              :hide-details="false"
-              :change="$emit('set-color', color)"
-            >
-            {{ color }}
-            </v-text-field>   
-
-            <div class="input-color-dot" :style="{ backgroundColor: color }" />       
-          </div>
-
-          <div class="input mb-3">
-            <v-icon color="#818181" style="`font-size: 14px`" class="mr-3">mdi-sine-wave</v-icon>
-
-            <v-slider
-              v-model="curve"
-              :max="1000000"
-              class="align-center"              
-            >
-              <template v-slot:append>
-                <v-text-field
-                  v-model="curve"
-                  class="my-0 py-0"
-                  type="number"
-                  style="width: 45px"
-                ></v-text-field>
-              </template>
-            </v-slider>
-          </div>
-
-          <div class="input mb-3">
-            <v-icon color="#818181" style="`font-size: 14px`" class="mr-3">mdi-speedometer</v-icon>
-
-            <v-slider
-              v-model="speed"
-              :max="20000"
-              class="align-center"
-              :change="$emit('set-speed', speed)"
-            >
-              <template v-slot:append>
-                <v-text-field
-                  v-model="speed"
-                  class="my-0 py-0"
-                  type="number"
-                  style="width: 45px"
-                ></v-text-field>
-              </template>
-            </v-slider>
-          </div>          
-
-          <div class="input mb-3">
-            <v-icon color="#818181" style="`font-size: 14px`" class="mr-3">mdi-opacity</v-icon>
-
-            <v-slider
-              v-model="opacity"
-              :max="100"
-              class="align-center"
-            >
-              <template v-slot:append>
-                <v-text-field
-                  v-model="opacity"
-                  class="my-0 py-0"
-                  type="number"
-                  style="width: 45px"
-                ></v-text-field>
-              </template>
-            </v-slider>
-          </div>      
-        </div>
-      </v-col>                   
+    <v-row justify="center" >      
+      <slot></slot>
     </v-row>    
   </div>
 </template>
 
 <script>
-// import LandingOptions from '@/components/ui/LandingOptions'
 import * as d3 from "d3-selection";
 
 export default {
-  components: {
-    // LandingOptions,
-  },
   data() {
     return {
       opacity: 100,
@@ -139,7 +56,7 @@ export default {
   }
 
   &.hidden {
-    bottom: -220px;
+    bottom: -100px;
 
     .arrow {
       animation: bounceY 2s infinite;
@@ -156,34 +73,6 @@ export default {
         transform: translateY(-5px);
       }
     }      
-  }
-
-  .panel {
-    padding: 16px;
-    background: #444444;
-    box-shadow: 0px 4px 4px 0px #00000040;
-    border-radius: 11px;
-
-    .input {
-      display: flex;
-      align-items: center;
-
-      .input-color-field {
-        border-radius: 32px;
-        border: 2px solid #818181;
-        margin-right: 12px;
-        width: 48px;
-      }
-
-      .input-color-dot {
-        height: 20px;
-        width: 20px;
-        display: inline-block;
-        border-radius: 50%;
-        border: 2px solid #2D2D2D;
-        background-color: white;
-      }
-    }
   }
 }
 </style>
