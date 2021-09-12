@@ -5,48 +5,16 @@
     <slot></slot>
 
     <LandingOptions>
-      <v-col cols="3">
+      <v-col cols="4">
         <CardOptions>
-          <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
+          <Slider :value="4" icon="mdi-run" @input="handleSpeed" min=1 max=20 step=1 />
           <ColorPicker 
             icon="mdi-palette" 
-            initialColor="#c87780"
-            @change-color="handleColor(0, $event)"
+            initialColor="#E90922"
+            @change-color="handleMonochrome($event)"
           />
         </CardOptions>
       </v-col>
-
-      <v-col cols="3">        
-        <CardOptions>
-          <ColorPicker 
-            icon="mdi-palette" 
-            initialColor="#f18271"
-            @change-color="handleColor(1, $event)"            
-          />          
-          <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
-        </CardOptions>
-      </v-col>   
-
-      <v-col cols="3">
-        <AddBtn v-if="!colors[2].state" @add-color="colors[2].state = true"/>
-
-        <CardOptions v-else-if="colors[2].state">
-          <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
-          <ColorPicker 
-            icon="mdi-palette" 
-            initialColor="black"            
-            />
-        </CardOptions>
-      </v-col>  
-
-      <v-col cols="3">
-        <AddBtn v-if="!colors[3].state" @add-color="colors[3].state = true" />
-        
-        <CardOptions v-else-if="colors[3]">
-          <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
-          <ColorPicker icon="mdi-palette" />
-        </CardOptions>
-      </v-col>                 
     </LandingOptions>
   </section>
 </template>
@@ -55,18 +23,18 @@
 import LandingOptions from '@/components/ui/LandingOptions'
 // import * as d3 from "d3-selection";
 
-import AddBtn from '@/components/ui/AddBtn'
-// import Slider from '@/components/ui/Slider'
+// import AddBtn from '@/components/ui/AddBtn'
+import Slider from '@/components/ui/Slider'
 import CardOptions from '@/components/ui/CardOptions'
 import ColorPicker from '@/components/ui/ColorPicker'
 
 export default {
   components: {
     LandingOptions,
-    // Slider,
+    Slider,
     CardOptions,    
     ColorPicker,
-    AddBtn
+    // AddBtn
   },
   data() {
     return {
@@ -109,20 +77,132 @@ export default {
 // const gradient = 'linear-gradient(45deg, rgba(0, 0, 0, 255), rgba(0, 0, 0, 0), rgba(0, 0, 0, 255)) no-repeat border-box, linear-gradient(20deg, #0ff 10%, #f00 50%, #0ff 100%) no-repeat border-box';
 
 
-      console.log(gradient)
 
       const time = `10s`
 
       selector.setProperty('--time', time);
       selector.setProperty('--gradient', gradient);      
-      console.log(x,y)
+    },
+    handleMonochrome(userColor) {
+      const colorInput = this.hexToHSL(userColor);  
+
+      // const darkColor = this.HSLToHex(colorInput.h ,  +colorInput.s - 10 < 0 ? 0 : +colorInput.s - 10,  +colorInput.l - 10 < 0 ? 0 : +colorInput.l - 10)
+      // const lightColor = this.HSLToHex(colorInput.h ,  +colorInput.s + 10 < 100 ? 100 : +colorInput.s + 10,  +colorInput.l + 10 > 100 ? 100 : +colorInput.l + 10)
+
+      const darkColor = this.HSLToHex(+colorInput.h, colorInput.s - 5, +colorInput.l - 15 < 0 ? 0 : +colorInput.l - 15)
+      const lightColor = this.HSLToHex(+colorInput.h + 10, colorInput.s, +colorInput.l + 10 > 100 ? 100 : +colorInput.l + 10)
+
+      const gradient = `linear-gradient(-90deg, 
+        ${lightColor},        
+        ${userColor},        
+        ${darkColor}
+      )`;    
+      
+      const time = `4s`
+
+      console.log(gradient)
+
+      const selector = document.documentElement.style
+      selector.setProperty('--time', time);
+      selector.setProperty('--gradient', gradient);            
     },
     handleSpeed(event) {
+      console.log(event)
       const selector = document.documentElement.style
-      const time = `${event}ms`
+      const time = `${event}s`
 
       selector.setProperty('--time', time);
-    },    
+    },
+    hexToHSL(H) {
+      // Convert hex to RGB first
+      let r = 0, g = 0, b = 0;
+        if (H.length == 4) {
+          r = "0x" + H[1] + H[1];
+          g = "0x" + H[2] + H[2];
+          b = "0x" + H[3] + H[3];
+        } else if (H.length == 7) {
+          r = "0x" + H[1] + H[2];
+          g = "0x" + H[3] + H[4];
+          b = "0x" + H[5] + H[6];
+        }
+
+      // Then to HSL
+      r /= 255;
+      g /= 255;
+      b /= 255;
+        
+      let cmin = Math.min(r,g,b),
+          cmax = Math.max(r,g,b),
+          delta = cmax - cmin,
+          h = 0,
+          s = 0,
+          l = 0;
+
+      if (delta == 0)
+        h = 0;
+      else if (cmax == r)
+        h = ((g - b) / delta) % 6;
+      else if (cmax == g)
+        h = (b - r) / delta + 2;
+      else
+        h = (r - g) / delta + 4;
+
+      h = Math.round(h * 60);
+
+      if (h < 0)
+        h += 360;
+
+      l = (cmax + cmin) / 2;
+      s = delta == 0 ? 0 : delta / (1 - Math.abs(2 * l - 1));
+      s = +(s * 100).toFixed(1);
+      l = +(l * 100).toFixed(1);
+
+      var HSL = new Object();
+      HSL['h'] = h;
+      HSL['s'] = s;
+      HSL['l'] = l;
+
+      return HSL;
+    },
+    HSLToHex(h,s,l) {
+      s /= 100;
+      l /= 100;
+
+      let c = (1 - Math.abs(2 * l - 1)) * s,
+          x = c * (1 - Math.abs((h / 60) % 2 - 1)),
+          m = l - c/2,
+          r = 0,
+          g = 0, 
+          b = 0; 
+
+      if (0 <= h && h < 60) {
+        r = c; g = x; b = 0;
+      } else if (60 <= h && h < 120) {
+        r = x; g = c; b = 0;
+      } else if (120 <= h && h < 180) {
+        r = 0; g = c; b = x;
+      } else if (180 <= h && h < 240) {
+        r = 0; g = x; b = c;
+      } else if (240 <= h && h < 300) {
+        r = x; g = 0; b = c;
+      } else if (300 <= h && h < 360) {
+        r = c; g = 0; b = x;
+      }
+      // Having obtained RGB, convert channels to hex
+      r = Math.round((r + m) * 255).toString(16);
+      g = Math.round((g + m) * 255).toString(16);
+      b = Math.round((b + m) * 255).toString(16);
+
+      // Prepend 0s, if necessary
+      if (r.length == 1)
+        r = "0" + r;
+      if (g.length == 1)
+        g = "0" + g;
+      if (b.length == 1)
+        b = "0" + b;
+
+      return "#" + r + g + b;
+    }
   },
 }
 </script>
@@ -149,7 +229,7 @@ export default {
 
   &.background--custom {
     background: var(--gradient);       
-    background-size:  200% 200%;
+    background-size: 300% 300%;
     animation: gradient var(--time) alternate infinite;
 
     @keyframes gradient {

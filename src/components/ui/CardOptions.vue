@@ -1,7 +1,7 @@
 <template>
   <v-card
-      class="mx-auto pa-5"
-      max-width="225"
+      class="mx-auto pa-4"
+      max-width="400"
       elevation="24"
       color="#444444"
       rounded="xl"
