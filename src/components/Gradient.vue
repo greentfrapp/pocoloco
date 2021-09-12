@@ -12,39 +12,25 @@
         </CardOptions>
       </v-col>
 
-      <v-col cols="3">
-        <CardOptions>
+      <v-col cols="3" v-for="(color, i) in colors" :key="i">
+        <CardOptions class="text-center">
+          <v-hover v-if="!color.state">
+            <v-icon
+              large
+              slot-scope="{ hover }"
+              :style="{color: hover ? '#fff':'#aaa'}"
+              @click="color.state = true, color.hex= initialColors[i]">
+              mdi-plus
+            </v-icon>
+          </v-hover>
           <ColorPicker 
+            v-else-if="color.state"
             icon="mdi-palette" 
-            initialColor="#a4baf5"
-            @change-color="handleColor($event, 0)"
+            :initialColor="color.hex"
+            @change-color="handleColor($event, i)"
           />
         </CardOptions>
-      </v-col>
-
-      <v-col :cols="colors[1].state ? 3 : 1">
-        <AddBtn v-if="!colors[1].state" @add-color="colors[1].state = true, colors[1].hex= '#c8e74d'"/>
-
-        <CardOptions v-else-if="colors[1].state">
-          <ColorPicker 
-            icon="mdi-palette" 
-            :initialColor="colors[1].hex"
-            @change-color="handleColor($event, 1)"
-          />
-        </CardOptions>
-      </v-col> 
-
-      <v-col :cols="colors[2].state ? 3 : 1">
-        <AddBtn v-show="colors[1].state" v-if="!colors[2].state" @add-color="colors[2].state = true, colors[2].hex='#f5a2a1'"/>
-
-        <CardOptions v-else-if="colors[2].state">
-          <ColorPicker 
-            icon="mdi-palette" 
-            :initialColor="colors[2].hex"
-            @change-color="handleColor($event, 2)"
-          />
-        </CardOptions>
-      </v-col>               
+      </v-col>           
     </LandingOptions>
 
     <v-dialog
@@ -92,7 +78,7 @@
 import LandingOptions from '@/components/ui/LandingOptions'
 // import * as d3 from "d3-selection";
 
-import AddBtn from '@/components/ui/AddBtn'
+// import AddBtn from '@/components/ui/AddBtn'
 import Slider from '@/components/ui/Slider'
 import CardOptions from '@/components/ui/CardOptions'
 import ColorPicker from '@/components/ui/ColorPicker'
@@ -103,14 +89,19 @@ export default {
     Slider,
     CardOptions,    
     ColorPicker,
-    AddBtn
+    // AddBtn
   },
   data() {
     return {
+      initialColors: [
+        '#a4baf5',
+        '#c8e74d',
+        '#f5a2a1',
+      ],
       colors: [
-        { hex: '', state: true },
-        { hex: '', state: false },
-        { hex: '', state: false },
+        { hex: '#a4baf5', state: true },
+        { hex: '#c8e74d', state: false },
+        { hex: '#f5a2a1', state: false },
       ],
       angle: '90',
       dialog: false,
