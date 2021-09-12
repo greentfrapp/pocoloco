@@ -2,6 +2,7 @@
   <v-card
       class="pa-4 ma-1"
       max-width="200"
+      width="180"
       elevation="24"
       color="#444444"
       rounded="xl"

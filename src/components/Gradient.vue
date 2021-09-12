@@ -22,7 +22,7 @@
         </CardOptions>
       </v-col>
 
-      <v-col cols="3">
+      <v-col :cols="colors[1].state ? 3 : 1">
         <AddBtn v-if="!colors[1].state" @add-color="colors[1].state = true, colors[1].hex= '#c8e74d'"/>
 
         <CardOptions v-else-if="colors[1].state">
@@ -34,7 +34,7 @@
         </CardOptions>
       </v-col> 
 
-      <v-col cols="3">
+      <v-col :cols="colors[2].state ? 3 : 1">
         <AddBtn v-show="colors[1].state" v-if="!colors[2].state" @add-color="colors[2].state = true, colors[2].hex='#f5a2a1'"/>
 
         <CardOptions v-else-if="colors[2].state">
@@ -314,8 +314,6 @@ export default {
       }
     }
   }
-
-  
 
   .landing-content {
     padding: 64px 0;
