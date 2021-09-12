@@ -1,5 +1,5 @@
 <template>
-  <v-btn elevation="2" fab @click="$emit('add-color', true)" >
+  <v-btn elevation="2" small fab @click="$emit('add-color', true)">
     <v-icon>mdi-plus</v-icon>
   </v-btn>
 </template>

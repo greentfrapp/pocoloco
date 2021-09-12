@@ -1,16 +1,16 @@
 <template>
   <div class="landing-ui hidden">
-    <p class="text-card-title-2 text-center mb-6" @click="options = !options">
+    <p class="text-reference text-center mb-4" @click="options = !options">
       Options
       <v-icon class="arrow" color="#818181">{{ arrow }}</v-icon>
     </p>
 
-    <v-row justify="center" >      
+    <v-row justify="space-around" align="center">      
       <slot></slot>
     </v-row>
 
-    <v-btn :ripple="false" fab class="btn--copy" v-show="!options" @click="$emit('export-code')">
-      <v-icon>mdi-code</v-icon>
+    <v-btn :ripple="false" :x-small="true" fab class="btn--copy" v-show="!options" @click="$emit('export-code')">
+      <v-icon>mdi-code-tags</v-icon>
     </v-btn>        
   </div>
 </template>
@@ -41,9 +41,10 @@ export default {
 
 <style lang="scss" scoped>
 .landing-ui {
-  min-width: map-get($grid-breakpoints, 'md') * 1.15;
-  max-width: map-get($grid-breakpoints, 'lg') * 0.7;
+  min-width: 625px;
+  // max-width: map-get($grid-breakpoints, 'lg') * 0.7;
   position: absolute;
+  width:fit-content;
   border-radius: 12px;
   bottom: 0;
   left: 50%;
@@ -83,8 +84,6 @@ export default {
     position: absolute;
     top: 12px;
     right: 24px;
-    width: 50px;
-    height: 50px;
   }
 }
 </style>
