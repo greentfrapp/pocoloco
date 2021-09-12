@@ -17,7 +17,7 @@
       v-model="color"
       flat mode="hexa"
       width="200"
-      dark="true"
+      dark
       />
   </v-menu>
 </div>

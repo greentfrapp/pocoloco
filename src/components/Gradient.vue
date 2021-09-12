@@ -5,16 +5,46 @@
     <slot></slot>
 
     <LandingOptions>
-      <v-col cols="4">
+
+      <v-col cols="3">
         <CardOptions>
-          <Slider :value="4" icon="mdi-run" @input="handleSpeed" min=1 max=20 step=1 />
+          <Slider :value="3" icon="mdi-run" @input="handleSpeed" min=1 max=15 step=1 />
+        </CardOptions>
+      </v-col>
+
+      <v-col cols="3">
+        <CardOptions>
           <ColorPicker 
             icon="mdi-palette" 
-            initialColor="#E90922"
-            @change-color="handleMonochrome($event)"
+            initialColor="#a4baf5"
+            @change-color="handleColor($event, 0)"
           />
         </CardOptions>
       </v-col>
+
+      <v-col cols="3">
+        <AddBtn v-if="!colors[1].state" @add-color="colors[1].state = true, colors[1].hex= '#c8e74d'"/>
+
+        <CardOptions v-else-if="colors[1].state">
+          <ColorPicker 
+            icon="mdi-palette" 
+            :initialColor="colors[1].hex"
+            @change-color="handleColor($event, 1)"
+          />
+        </CardOptions>
+      </v-col> 
+
+      <v-col cols="3">
+        <AddBtn v-show="colors[1].state" v-if="!colors[2].state" @add-color="colors[2].state = true, colors[2].hex='#f5a2a1'"/>
+
+        <CardOptions v-else-if="colors[2].state">
+          <ColorPicker 
+            icon="mdi-palette" 
+            :initialColor="colors[2].hex"
+            @change-color="handleColor($event, 2)"
+          />
+        </CardOptions>
+      </v-col>               
     </LandingOptions>
   </section>
 </template>
@@ -23,7 +53,7 @@
 import LandingOptions from '@/components/ui/LandingOptions'
 // import * as d3 from "d3-selection";
 
-// import AddBtn from '@/components/ui/AddBtn'
+import AddBtn from '@/components/ui/AddBtn'
 import Slider from '@/components/ui/Slider'
 import CardOptions from '@/components/ui/CardOptions'
 import ColorPicker from '@/components/ui/ColorPicker'
@@ -34,77 +64,40 @@ export default {
     Slider,
     CardOptions,    
     ColorPicker,
-    // AddBtn
+    AddBtn
   },
   data() {
     return {
       colors: [
-        { hex: '#3f51b1', state: true },
-        { hex: '#f18271', state: true },
+        { hex: '', state: true },
         { hex: '', state: false },
-        { hex: '', state: false }
+        { hex: '', state: false },
       ]
     };
   },
-  mounted() {
-    const selector = document.documentElement.style
-
-    const gradient = `linear-gradient(-45deg, 
-      ${this.colors[0].hex} 0%, 
-      ${this.colors[1].hex} 100%
-    )`;    
-
-    const time = `10s`
-
-    selector.setProperty('--time', time);
-    selector.setProperty('--gradient', gradient);
-  },
-  methods: {
-    handleColor(x, y) {
-      this.colors[+x].hex = y
-
-      const selector = document.documentElement.style
-
-      const gradient = `linear-gradient(-90deg, 
-        ${this.colors[0].hex} 0%, 
-        ${this.colors[1].hex} 100%
-      )`;    
-
-// const gradient = "linear-gradient(217deg, rgba(255,0,0,.8), rgba(2 55,0,0,0) 70.71%),  linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%)"
-
-
-
-// const gradient = 'linear-gradient(45deg, rgba(0, 0, 0, 255), rgba(0, 0, 0, 0), rgba(0, 0, 0, 255)) no-repeat border-box, linear-gradient(20deg, #0ff 10%, #f00 50%, #0ff 100%) no-repeat border-box';
-
-
-
-      const time = `10s`
-
-      selector.setProperty('--time', time);
-      selector.setProperty('--gradient', gradient);      
-    },
-    handleMonochrome(userColor) {
+  methods: {   
+    handleColor(userColor, index) {
       const colorInput = this.hexToHSL(userColor);  
-
-      // const darkColor = this.HSLToHex(colorInput.h ,  +colorInput.s - 10 < 0 ? 0 : +colorInput.s - 10,  +colorInput.l - 10 < 0 ? 0 : +colorInput.l - 10)
-      // const lightColor = this.HSLToHex(colorInput.h ,  +colorInput.s + 10 < 100 ? 100 : +colorInput.s + 10,  +colorInput.l + 10 > 100 ? 100 : +colorInput.l + 10)
-
       const darkColor = this.HSLToHex(+colorInput.h, colorInput.s - 5, +colorInput.l - 15 < 0 ? 0 : +colorInput.l - 15)
       const lightColor = this.HSLToHex(+colorInput.h + 10, colorInput.s, +colorInput.l + 10 > 100 ? 100 : +colorInput.l + 10)
 
+      if (index ===  0 && !this.colors[1].state) {
+        this.colors[0].hex = lightColor;        
+        this.colors[1].hex = userColor;   
+        this.colors[2].hex = darkColor;   
+      } else if (!this.colors[2].state) {
+        this.colors[+index].hex = userColor;               
+        this.colors[2].hex = '';        
+      } else if (this.colors[2].state) {        
+        this.colors[+index].hex = userColor;               
+      }
+
       const gradient = `linear-gradient(-90deg, 
-        ${lightColor},        
-        ${userColor},        
-        ${darkColor}
-      )`;    
+        ${this.colors.map((n) => n.hex).filter(n => n).join(', ')}
+      )`;  
       
-      const time = `4s`
-
-      console.log(gradient)
-
       const selector = document.documentElement.style
-      selector.setProperty('--time', time);
-      selector.setProperty('--gradient', gradient);            
+      selector.setProperty('--gradient', gradient); 
     },
     handleSpeed(event) {
       console.log(event)
