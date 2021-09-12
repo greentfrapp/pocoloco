@@ -1,16 +1,16 @@
 <template>
   <section
     :class="['page-landing', 'background--custom']">
-
+    <div class="custom-div" />
     <slot></slot>
 
     <LandingOptions>
       <v-col cols="3">
         <CardOptions>
           <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
-          <InputValue 
+          <ColorPicker 
             icon="mdi-palette" 
-            initialColor="yellow"
+            initialColor="#c87780"
             @change-color="handleColor(0, $event)"
           />
         </CardOptions>
@@ -18,12 +18,12 @@
 
       <v-col cols="3">        
         <CardOptions>
-          <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
-          <InputValue 
+          <ColorPicker 
             icon="mdi-palette" 
-            initialColor="purple"
+            initialColor="#f18271"
             @change-color="handleColor(1, $event)"            
-          />
+          />          
+          <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
         </CardOptions>
       </v-col>   
 
@@ -32,7 +32,10 @@
 
         <CardOptions v-else-if="colors[2].state">
           <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
-          <InputValue icon="mdi-palette" />
+          <ColorPicker 
+            icon="mdi-palette" 
+            initialColor="black"            
+            />
         </CardOptions>
       </v-col>  
 
@@ -41,7 +44,7 @@
         
         <CardOptions v-else-if="colors[3]">
           <!-- <Slider :value="speedValue" icon="mdi-run" @input="updateSpeed" min=1 max=50 step=1 /> -->
-          <InputValue icon="mdi-palette" />
+          <ColorPicker icon="mdi-palette" />
         </CardOptions>
       </v-col>                 
     </LandingOptions>
@@ -55,14 +58,14 @@ import LandingOptions from '@/components/ui/LandingOptions'
 import AddBtn from '@/components/ui/AddBtn'
 // import Slider from '@/components/ui/Slider'
 import CardOptions from '@/components/ui/CardOptions'
-import InputValue from '@/components/ui/InputValue'
+import ColorPicker from '@/components/ui/ColorPicker'
 
 export default {
   components: {
     LandingOptions,
     // Slider,
     CardOptions,    
-    InputValue,
+    ColorPicker,
     AddBtn
   },
   data() {
@@ -94,10 +97,17 @@ export default {
 
       const selector = document.documentElement.style
 
-      const gradient = `linear-gradient(-45deg, 
+      const gradient = `linear-gradient(-90deg, 
         ${this.colors[0].hex} 0%, 
         ${this.colors[1].hex} 100%
       )`;    
+
+// const gradient = "linear-gradient(217deg, rgba(255,0,0,.8), rgba(2 55,0,0,0) 70.71%),  linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%)"
+
+
+
+// const gradient = 'linear-gradient(45deg, rgba(0, 0, 0, 255), rgba(0, 0, 0, 0), rgba(0, 0, 0, 255)) no-repeat border-box, linear-gradient(20deg, #0ff 10%, #f00 50%, #0ff 100%) no-repeat border-box';
+
 
       console.log(gradient)
 
@@ -139,18 +149,18 @@ export default {
 
   &.background--custom {
     background: var(--gradient);       
-    background-size:  400% 400%;
-    animation: gradient var(--time) ease infinite;
+    background-size:  200% 200%;
+    animation: gradient var(--time) alternate infinite;
 
     @keyframes gradient {
       0% {
-        background-position: 24%;
-      }
+        background-position: 0%;
+      }  
       50% {
-        background-position: 100%;
-      }
+        background-position: 50%;
+      }   
       100% {
-        background-position: 25%;
+        background-position: 100%;
       }
     }
   }
@@ -160,6 +170,17 @@ export default {
   .landing-content {
     padding: 64px 0;
   }  
+}
+
+.custom-div {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 200px;
+  height: 160px;
+  background: var(--gradient);  
+  border: 2px solid red;     
+  background-size:  100% 100%;
 }
 
 @media #{map-get($display-breakpoints, 'xs-only')} {

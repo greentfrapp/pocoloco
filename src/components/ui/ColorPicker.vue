@@ -1,6 +1,6 @@
 <template>
 <div class="input">
-  <v-text-field
+  <!-- <v-text-field
     v-model="color"
     dense
     rounded
@@ -12,7 +12,20 @@
   {{ color }}
   </v-text-field>   
   <div class="input-color-dot" :style="{ backgroundColor: color }" />
-  <v-icon class="ml-2">{{ icon }}</v-icon> 
+  <v-icon class="ml-2">{{ icon }}</v-icon>  -->
+  <!-- <v-color-picker mode="hexa" canvas-height="60" flat width="100%" /> -->
+    <v-text-field v-model="color" hide-details class="ma-0 pa-0" solo-inverted flat :change="$emit('change-color', color)">
+      
+      <template v-slot:append>
+        <v-menu v-model="menu" top nudge-bottom="105" nudge-left="16" :close-on-content-click="false">
+          <template v-slot:activator="{ on }">
+            <div :style="swatchStyle" v-on="on" />
+          </template>
+          <v-color-picker v-model="color" flat mode="hexa" />
+        </v-menu>
+      </template>
+      
+    </v-text-field>
 </div>
 </template>
 
@@ -31,8 +44,20 @@ export default {
   },
   data() {
     return {
-      color: "grey",
+      menu: false,  
+      color: ''    
     };
+  },
+  computed: {
+    swatchStyle() {
+      return {
+        backgroundColor: this.color,
+        cursor: 'pointer',
+        height: '20px',
+        width: '20px',
+        borderRadius: '50%',
+      }
+    }
   },
   mounted() {
     this.color = this.initialColor;
