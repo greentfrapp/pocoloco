@@ -4,7 +4,6 @@
     <template v-slot:activator="{ on }">
       <v-btn
         color="primary"
-        v-bind="attrs"
         v-on="on"
         :change="$emit('change-color', color)"
         style="flex-grow: 1; text-align: left;"
@@ -18,7 +17,7 @@
       v-model="color"
       flat mode="hexa"
       width="200"
-      dark="true"
+      dark
       />
   </v-menu>
 </div>
