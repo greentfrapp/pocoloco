@@ -1,31 +1,20 @@
 <template>
 <div class="input">
-  <!-- <v-text-field
-    v-model="color"
-    dense
-    rounded
-    class="my-0 py-0 input-color-field"
-    type="string"
-    :hide-details="false"
-    :change="$emit('change-color', color)"
-  >
-  {{ color }}
-  </v-text-field>   
-  <div class="input-color-dot" :style="{ backgroundColor: color }" />
-  <v-icon class="ml-2">{{ icon }}</v-icon>  -->
-  <!-- <v-color-picker mode="hexa" canvas-height="60" flat width="100%" /> -->
-    <v-text-field v-model="color" hide-details class="ma-0 pa-0" solo-inverted flat :change="$emit('change-color', color)">
+  <v-menu v-model="menu" top :close-on-content-click="false">
+    <template v-slot:activator="{ on }">
+      <v-btn
+        color="primary"
+        v-bind="attrs"
+        v-on="on"
+        :change="$emit('change-color', color)"
+      >
+        {{ color }}
+      </v-btn>
       
-      <template v-slot:append>
-        <v-menu v-model="menu" top nudge-bottom="105" nudge-left="16" :close-on-content-click="false">
-          <template v-slot:activator="{ on }">
-            <div :style="swatchStyle" v-on="on" />
-          </template>
-          <v-color-picker v-model="color" flat mode="hexa" />
-        </v-menu>
-      </template>
-      
-    </v-text-field>
+      <div :style="swatchStyle" v-on="on" />
+    </template>
+    <v-color-picker v-model="color" flat mode="hexa" />
+  </v-menu>
 </div>
 </template>
 
