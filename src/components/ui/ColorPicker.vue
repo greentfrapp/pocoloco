@@ -1,18 +1,20 @@
 <template>
 <div class="input">
-  <v-text-field
-    v-model="color"
-    dense
-    rounded
-    class="my-0 py-0 input-color-field"
-    type="string"
-    :hide-details="false"
-    :change="$emit('change-color', color)"
-  >
-  {{ color }}
-  </v-text-field>   
-  <div class="input-color-dot" :style="{ backgroundColor: color }" />
-  <v-icon class="ml-2">{{ icon }}</v-icon> 
+  <v-menu v-model="menu" top :close-on-content-click="false">
+    <template v-slot:activator="{ on }">
+      <v-btn
+        color="primary"
+        v-bind="attrs"
+        v-on="on"
+        :change="$emit('change-color', color)"
+      >
+        {{ color }}
+      </v-btn>
+      
+      <div :style="swatchStyle" v-on="on" />
+    </template>
+    <v-color-picker v-model="color" flat mode="hexa" />
+  </v-menu>
 </div>
 </template>
 
@@ -31,8 +33,20 @@ export default {
   },
   data() {
     return {
-      color: "grey",
+      menu: false,  
+      color: ''    
     };
+  },
+  computed: {
+    swatchStyle() {
+      return {
+        backgroundColor: this.color,
+        cursor: 'pointer',
+        height: '20px',
+        width: '20px',
+        borderRadius: '50%',
+      }
+    }
   },
   mounted() {
     this.color = this.initialColor;
