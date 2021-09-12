@@ -4,11 +4,11 @@
     <div class="custom-div" />
     <slot></slot>
 
-    <LandingOptions>
-
+    <LandingOptions @export-code="dialog = true">
       <v-col cols="3">
         <CardOptions>
-          <Slider :value="3" icon="mdi-run" @input="handleSpeed" min=1 max=15 step=1 />
+          <Slider :value="8" icon="mdi-run" @input="handleSpeed" min=1 max=12 step=1 />
+          <!-- <Slider :value="90" icon="mdi-angle-acute" @input="handleAngle" min=0 max=360 step=45 /> -->
         </CardOptions>
       </v-col>
 
@@ -46,6 +46,45 @@
         </CardOptions>
       </v-col>               
     </LandingOptions>
+
+    <v-dialog
+      v-model="dialog" 
+      flat
+      transition="dialog-bottom-transition"
+      max-width="600">
+      <v-card class="pa-5">
+        <div class="code-header mb-4">
+          <p class="text-body mb-0" style="display: inline-block">Copy this style to your CSS and add  <code>class="background--custom"</code> to your div
+          </p>
+          <v-btn :ripple="false" fab class="btn--copy" @click="handleCode">
+            <v-icon>mdi-content-copy</v-icon>
+          </v-btn> 
+        </div>
+
+        <div class="pa-4 code-wrapper">
+          <pre>
+            <code class="gradient-css-code">
+.background--custom {
+  background: {{ gradient }};       
+  background-size: 300% 300%;
+  animation: gradient {{ time }} alternate infinite;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0%;
+    }  
+    50% {
+      background-position: 50%;
+    }   
+    100% {
+      background-position: 100%;
+    }
+  }
+}</code>
+          </pre>
+        </div>           
+      </v-card>
+    </v-dialog>    
   </section>
 </template>
 
@@ -72,8 +111,15 @@ export default {
         { hex: '', state: true },
         { hex: '', state: false },
         { hex: '', state: false },
-      ]
+      ],
+      angle: '90',
+      dialog: false,
+      time: '0',
+      gradient: '',
     };
+  },
+  mounted() {
+    this.handleSpeed(8);
   },
   methods: {   
     handleColor(userColor, index) {
@@ -92,19 +138,26 @@ export default {
         this.colors[+index].hex = userColor;               
       }
 
-      const gradient = `linear-gradient(-90deg, 
-        ${this.colors.map((n) => n.hex).filter(n => n).join(', ')}
-      )`;  
-      
+      this.createGradient();
+    },
+    createGradient() {
+      this.gradient = `linear-gradient(${this.angle}deg, ${this.colors.map((n) => n.hex).filter(n => n).join(', ')})`;        
       const selector = document.documentElement.style
-      selector.setProperty('--gradient', gradient); 
+      selector.setProperty('--gradient', this.gradient); 
     },
     handleSpeed(event) {
-      console.log(event)
       const selector = document.documentElement.style
-      const time = `${event}s`
-
-      selector.setProperty('--time', time);
+      this.time = `${12 - event}s`
+      selector.setProperty('--time', this.time);
+    },
+    // handleAngle(event) {
+    //   this.angle = event;
+    //   this.createGradient();
+    // },
+    handleCode() {
+      const text = document.querySelector(".gradient-css-code").textContent
+      console.log(text)
+      document.execCommand("copy");
     },
     hexToHSL(H) {
       // Convert hex to RGB first
@@ -260,5 +313,19 @@ export default {
   .page-landing {
     padding: 48px 4px;
   }  
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.code-wrapper {
+  background-color: #424242;
+  color: white;
+  border-radius: 12px;
+  font-family: 'Courier New', Courier, monospace;
 }
 </style>

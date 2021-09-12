@@ -7,7 +7,11 @@
 
     <v-row justify="center" >      
       <slot></slot>
-    </v-row>    
+    </v-row>
+
+    <v-btn :ripple="false" fab class="btn--copy" v-show="!options" @click="$emit('export-code')">
+      <v-icon>mdi-code</v-icon>
+    </v-btn>        
   </div>
 </template>
 
@@ -73,6 +77,14 @@ export default {
         transform: translateY(-5px);
       }
     }      
+  }
+
+  .btn--copy {
+    position: absolute;
+    top: 12px;
+    right: 24px;
+    width: 50px;
+    height: 50px;
   }
 }
 </style>
