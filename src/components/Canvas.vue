@@ -60,7 +60,7 @@ export default {
   data() {
     return {
       colors: [
-        { hex: '#9ab6ff', state: true },
+        { hex: '#ff9aba', state: true },
         { hex: '#91d1ff', state: true },
         { hex: '#ffebf6', state: true },
         { hex: '#FFFFFF', state: false },
