@@ -4,8 +4,8 @@
       <nav class="d-flex align-center justify-space-between">
         <span class="text-lede">pocoloco</span>
         <div>
-          <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Gradient</v-btn>
-          <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Canvas</v-btn>
+          <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
+          <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Mesh</v-btn>
           <v-btn class="nav-item" @click="$emit('changeBackground', 'Lines')">Lines</v-btn>
         </div>
       </nav>
