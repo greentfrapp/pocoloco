@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import LandingOptions from '@/components/ui/LandingOptions'
+import LandingOptions from '@/components/ui/LandingOptions2'
 // import * as d3 from "d3-selection";
 
 // import AddBtn from '@/components/ui/AddBtn'

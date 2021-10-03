@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 const routerOptions = [
-  { path: '/', component: 'Gradient' },
-  { path: '/lines', component: 'Lines' },
+  { path: '/', component: 'Gradient2' },
 ]
 const routes = routerOptions.map(route => {
   return {

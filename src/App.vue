@@ -1,22 +1,43 @@
 <template>
   <v-app>
-    <router-view>
-    <Main/>
-    </router-view>
+    <keep-alive include="Gradient,Lines,Canvas" exclude="Main">
+    <component :is="currentBackground" ref="app">
+    <Main @export="exportCode" @changeBackground="changeBackground" :background="currentBackground"/>
+    </component>
+    </keep-alive>
   </v-app>
 </template>
 
 <script>
 import Main from '@/components/Main'
+import Gradient from '@/components/Gradient2'
+import Lines from '@/components/Lines'
+import Canvas from '@/components/Canvas'
 
 export default {
   name: 'App',
   components: {
-    Main
+    Main,
+    Gradient,
+    Lines,
+    Canvas,
   },
-  data: () => ({
-    //
-  }),
+  mounted () {
+  },
+  data: () => {
+    return {
+      currentBackground: 'Gradient',
+    }
+  },
+  computed: {},
+  methods: {
+    exportCode () {
+      this.$refs.app.export()
+    },
+    changeBackground (background) {
+      this.currentBackground = background
+    }
+  }
 };
 </script>
 

@@ -3,12 +3,14 @@
     class="landing-ui hidden"
     elevation="24"
     raised
+    style="overflow: hidden"
     >
-    <p class="text-card-title-2 text-center text-body-1 font-weight-medium mb-2" style="cursor: pointer;" @click="options = !options">
+    <span class="logo">pocoloco</span>
+    <p class="text-card-title-2 text-center text-body-1 font-weight-medium mt-2 mb-4" style="cursor: pointer;" @click="options = !options">
       OPTIONS
       <v-icon class="arrow" color="#818181">{{ arrow }}</v-icon>
     </p>
-    <v-row justify="center" class="pa-1">      
+    <v-row justify="center" class="pa-1 flex-nowrap">      
       <slot></slot>
     </v-row>    
   </v-card>
@@ -20,10 +22,6 @@ import * as d3 from "d3-selection";
 export default {
   data() {
     return {
-      opacity: 100,
-      speed: 20000,
-      curve: 100,    
-      color: '#FFFF00',  
       arrow: 'mdi-chevron-double-up',
       options: true,
     };
@@ -61,7 +59,7 @@ export default {
 
   &.hidden {
     //bottom: -20%;
-    transform: translate(-50%, 100%) translateY(-25px);
+    transform: translate(-50%, 100%) translateY(-40px);
 
     .arrow {
       animation: bounceY 2s infinite;
@@ -79,5 +77,20 @@ export default {
       }
     }      
   }
+}
+
+span.logo {
+  pointer-events: none;
+  position: absolute;
+  top: -22px;
+  left: -3px;
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.25rem;
+  font-family: "Raleway", sans-serif;
+  color: #353535;
+  -webkit-text-fill-color: #353535;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #353535;
 }
 </style>
