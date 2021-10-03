@@ -79,7 +79,7 @@ export default {
       wave: 5,
       height: 46,
       angle: -12,
-      speed: 0,
+      speed: -3,
       palettes: [],
       heightMap1: [],
       heightMap2: [],
