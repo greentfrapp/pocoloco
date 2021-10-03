@@ -49,8 +49,8 @@ export default {
     return {
       colors: [
         { hex: '#a4baf5', state: true },
-        { hex: '#c8e74d', state: false },
-        { hex: '#f5a2a1', state: false },
+        { hex: '#c8e74d', state: true },
+        { hex: '#f5a2a1', state: true },
       ],
       angle: '90',
       showExport: false,
