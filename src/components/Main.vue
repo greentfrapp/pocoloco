@@ -22,7 +22,7 @@
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Mesh</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Lines')">Lines</v-btn>
-            <v-btn class="nav-item" @click="$emit('export')" dark>Export!</v-btn>
+            <v-btn class="nav-item" @click="$emit('export')" dark style="color: white;">Export!</v-btn>
           </div>
           <!-- <v-select
             :items="['Gradient', 'Canvas', 'Lines']"
