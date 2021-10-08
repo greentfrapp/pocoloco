@@ -15,7 +15,7 @@
           </h1>
         </v-col>
         <v-col cols="7">
-          <h2 class="text-section mb-8 font-title" style="font-weight: 700; color: #313131;">
+          <h2 class="text-section mb-8 font-title" style="font-size: 21px; font-weight: 500; color: #313131;">
             Tired of static backgrounds? Click Export! for the code you need to get this dynamic backdrop for your own website.
           </h2>
           <div class="mb-8">

@@ -77,7 +77,7 @@ export default {
       dy2: 0,
       backgroundColor: '#FFFFFF',
       wave: 5,
-      height: 46,
+      height: 40,
       angle: -12,
       speed: -3,
       palettes: [],
