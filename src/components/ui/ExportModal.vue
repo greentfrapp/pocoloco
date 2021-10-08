@@ -4,21 +4,20 @@
   flat
   max-width="600">
   <v-card class="pa-5">
-    <div class="code-header mb-4">
-      <p class="text-body mb-0" style="display: inline-block">Copy this style to your CSS and add  <code>class="background--custom"</code> to your div
-      </p>
-      <v-btn :ripple="false" fab x-small class="btn--copy" @click="copyCode">
-        <v-icon>mdi-content-copy</v-icon>
-      </v-btn>
-      <v-btn :ripple="false" fab x-small class="btn--copy" @click="downloadCode">
-        <v-icon>mdi-download</v-icon>
-      </v-btn> 
-    </div>
-
     <div class="pa-4 code-wrapper">
       <pre>{{ code }}</pre>
     </div>
-    <div/>         
+    <div class="code-header mt-8">
+      <!-- <p class="text-body mb-0" style="display: inline-block">
+        Download or copy this code 
+      </p> -->
+      <v-btn :ripple="false" class="btn--copy" @click="copyCode">
+        Copy <v-icon>mdi-content-copy</v-icon>
+      </v-btn>
+      <v-btn :ripple="false" class="btn--copy" @click="downloadCode">
+        Download <v-icon>mdi-download</v-icon>
+      </v-btn> 
+    </div>
   </v-card>
 </v-dialog> 
 </template>
@@ -99,7 +98,7 @@ export default {
   color: white;
   border-radius: 12px;
   font-family: 'Courier New', Courier, monospace;
-  max-height: 80vh;
+  max-height: 60vh;
   overflow-y: scroll;
 }
 

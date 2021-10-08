@@ -2,30 +2,28 @@
   <section>
     <v-container class="py-5">
       <nav class="d-flex align-center justify-space-between">
-        <span class="text-lede">pocoloco</span>
-        <div>
-          <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
-          <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Mesh</v-btn>
-          <v-btn class="nav-item" @click="$emit('changeBackground', 'Lines')">Lines</v-btn>
-        </div>
+        <a class="text-lede" href="/">pocoloco</a>
       </nav>
     </v-container>
     <v-container class="landing-content mt-16">
       <v-row no-gutters>
-        <v-col cols="8" class="mb-12">
+        <v-col cols="8" class="mb-8">
           <h1>
-            <span class="text-hero font-simple">Simplicity is the ultimate</span> 
+            <span class="text-hero font-title">Generate dynamic backgrounds</span>
             <br>
-            <span class="text-hero font-soph">sophistication</span>
+            <span class="text-hero font-title">for your website</span>
           </h1>
         </v-col>
         <v-col cols="7">
-          <h2 class="text-section mb-8">
-            Need a beautiful website to show the world that you mean business? Just hit that Export button and you’ve got your own gorgeously dynamic backdrop to showcase your next big idea.
+          <h2 class="text-section mb-8 font-title" style="font-weight: 700; color: #313131;">
+            Tired of static backgrounds? Click Export! for the code you need to get this dynamic backdrop for your own website.
           </h2>
-          <v-btn @click="$emit('export')" dark>
-            Export!
-          </v-btn>
+          <div class="mb-8">
+            <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
+            <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Mesh</v-btn>
+            <v-btn class="nav-item" @click="$emit('changeBackground', 'Lines')">Lines</v-btn>
+            <v-btn class="nav-item" @click="$emit('export')" dark>Export!</v-btn>
+          </div>
           <!-- <v-select
             :items="['Gradient', 'Canvas', 'Lines']"
             label="Background Type"
@@ -74,5 +72,8 @@ export default {
   color: #111;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
+}
+.nav-item:first-child {
+  margin-left: 0;
 }
 </style>

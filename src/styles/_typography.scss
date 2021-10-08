@@ -7,15 +7,19 @@ $font-secondary: 'Roboto', sans-serif;
 
 // typography
 .text-hero {
-  font-size: 6rem;
-  line-height: 6rem;
-  font-weight: 300;
+  font-size: 5rem;
+  line-height: 5rem;
+  font-weight: 900;
   letter-spacing: 0.5px;
   font-family: $font-secondary;
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 48px;
     line-height: 56px;
   }
+}
+
+.font-title {
+  font-family: 'Lato', sans-serif !important;
 }
 
 .font-simple {
@@ -49,6 +53,7 @@ $font-secondary: 'Roboto', sans-serif;
   -webkit-text-fill-color: white;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: white;
+  text-decoration: none;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 28px;
