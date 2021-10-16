@@ -138,6 +138,12 @@ export default {
     }
   },
   mounted () {
+    this.colors = [
+      { hex: '#ef008f', state: true },
+      { hex: '#6ec3f4', state: true },
+      { hex: '#7038ff', state: true },
+      { hex: '#ffba27', state: true },
+    ]
     this.gradient = new minigl.Gradient();
     this.gradient.initColors(['#ef008f', '#6ec3f4', '#7038ff', '#ffba27'])
     // this.gradient.initColors(this.colors.map(c => c.hex))
@@ -147,6 +153,20 @@ export default {
   methods: {
     export () {
       this.$refs.exportModal.toggle()
+    },
+    randomize () {
+      this.colors = this.colors.map(() => {
+        let hex = Math.floor(Math.random()*16777215).toString(16)
+        while (hex.length < 6) {
+          hex = '0' + hex
+        }
+        hex = '#' + hex
+        return {
+          hex,
+          state: true,
+        }
+      })
+      this.updateGradient()
     },
     handleColor(userColor, index) {
       this.colors[index].hex = userColor

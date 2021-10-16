@@ -27,7 +27,8 @@
 export default {
   props: {
     value: {
-      type: String
+      type: String,
+      default: '#FFFFFF',
     },
     icon: {
       type: String
@@ -56,8 +57,18 @@ export default {
       }
     }
   },
+  watch: {
+    initialColor (newVal, oldVal) {
+      if (newVal && newVal !== oldVal) this.color = newVal
+    }
+  },
   mounted() {
     this.color = this.initialColor;
+  },
+  methods: {
+    setColor (color) {
+      this.color = color
+    }
   }
 }
 </script>

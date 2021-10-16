@@ -12,9 +12,9 @@ $font-secondary: 'Roboto', sans-serif;
   font-weight: 900;
   letter-spacing: 0.5px;
   font-family: $font-secondary;
-  @media #{map-get($display-breakpoints, 'sm-and-down')} {
-    font-size: 48px;
-    line-height: 56px;
+  @media #{map-get($display-breakpoints, 'md-and-down')} {
+    font-size: 4rem;
+    line-height: 4rem;
   }
 }
 

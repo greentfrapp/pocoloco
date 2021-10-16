@@ -19,10 +19,11 @@
             Tired of static backgrounds? Click Export! for the code you need to get this dynamic backdrop for your own website.
           </h2>
           <div class="mb-8">
-            <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Mesh</v-btn>
+            <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Lines')">Lines</v-btn>
             <v-btn class="nav-item" @click="$emit('export')" dark style="color: white;">Export!</v-btn>
+            <v-btn class="nav-item" @click="$emit('randomize')" style="height: 36px; width: 36px; min-width: 36px;"><v-icon class="shake" dark>mdi-dice-6-outline</v-icon></v-btn>
           </div>
           <!-- <v-select
             :items="['Gradient', 'Canvas', 'Lines']"
@@ -47,6 +48,7 @@ export default {
   },
   emits: {
     export: null,
+    randomize: null,
     changeBackground: null,
   },
   data() {
@@ -56,11 +58,7 @@ export default {
   },
   methods: {},
   activated () {
-    console.log('activated')
-    console.log(this.background)
-    console.log(this.currentBackground)
     this.currentBackground = this.background
-    console.log(this.currentBackground)
   },
 }
 </script>
@@ -75,5 +73,19 @@ export default {
 }
 .nav-item:first-child {
   margin-left: 0;
+}
+.shake {
+  animation: bounceY 2s infinite;
+  @keyframes bounceY {
+      0%, 20%, 35%, 50%, 65%, 80%, 100% {
+        transform: translateY(0);
+      }
+      42% {
+        transform: translateY(-4px);
+      }
+      58% {
+        transform: translateY(-2px);
+      }
+    }          
 }
 </style>

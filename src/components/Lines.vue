@@ -155,11 +155,83 @@ export default {
     },
   },
   mounted () {
+    this.paths = [
+        {
+          id: 'path0',
+          d: 'M-100 -100L200 -100L200 50L-100 50Z',
+          duration: 5000,
+          color: '#FFFF00',
+          opacity: 0.7,
+          fill: 'rgba(255, 255, 0, 0.7)',
+          start: '-10deg',
+          end: '10deg',
+          height: 50,
+          state: true,
+        }, {
+          id: 'path1',
+          d: 'M-100 -100L200 -100L200 50L-100 50Z',
+          duration: 12500,
+          color: '#00FFFF',
+          opacity: 0.7,
+          fill: 'rgba(0, 255, 255, 0.7)',
+          start: '-30deg',
+          end: '30deg',
+          height: 50,
+          state: true,
+        }, {
+          id: 'path2',
+          d: 'M-100 -100L200 -100L200 20L-100 20Z',
+          duration: 30000,
+          color: '#FF00FF',
+          opacity: 0.2,
+          fill: 'rgba(255, 0, 255, 0.2)',
+          start: '40deg',
+          end: '-40deg',
+          height: 20,
+          state: true,
+        }, {
+          id: 'path3',
+          d: 'M-100 -100L200 -100L200 20L-100 20Z',
+          duration: 30000,
+          color: '#FF00FF',
+          opacity: 0.2,
+          fill: 'rgba(255, 0, 255, 0.2)',
+          start: '40deg',
+          end: '-40deg',
+          height: 20,
+          state: false,
+        },
+      ]
     this.paths.forEach(p => this.initBg(p.id, p.duration, p.start, p.end))
   },
   methods: {
     export () {
       this.$refs.exportModal.toggle()
+    },
+    randomize () {
+      this.paths = this.paths.map(p => {
+        let color = Math.floor(Math.random()*16777215).toString(16)
+        while (color.length < 6) {
+          color = '0' + color
+        }
+        color = '#' + color
+        const h = 10 + Math.round(Math.random() * 8) * 10
+        const opacity = Math.round(Math.random() * 10) * 0.1
+        const degree = (Math.round(Math.random() * 12) - 6) * 10
+        const duration = 500000 / (1 + Math.round(Math.random() * 199))
+        return {
+          id: p.id,
+          d: `M-100 -100L200 -100L200 ${h}L-100 ${h}Z`,
+          duration,
+          color,
+          opacity,
+          start: `${-degree}deg`,
+          end: `${degree}deg`,
+          height: h,
+          state: p.state,
+        }
+      })
+      this.createGradient()
     },
     initBg (pathId, duration, startDeg, endDeg) {
       const path = document.getElementById(pathId)

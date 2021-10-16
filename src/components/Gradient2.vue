@@ -60,9 +60,6 @@ export default {
     };
   },
   computed: {
-    speedValue () {
-      return 100000 / this.paths[2].duration
-    },
     code () {
       return `<!DOCTYPE html>
 <html lang="en">
@@ -97,10 +94,29 @@ export default {
   },
   mounted () {
     this.handleSpeed(8);
+    this.colors = [
+      { hex: '#a4baf5', state: true },
+      { hex: '#c8e74d', state: true },
+      { hex: '#f5a2a1', state: true },
+    ]
   },
   methods: {   
     export () {
       this.$refs.exportModal.toggle()
+    },
+    randomize () {
+      this.colors = this.colors.map(() => {
+        let hex = Math.floor(Math.random()*16777215).toString(16)
+        while (hex.length < 6) {
+          hex = '0' + hex
+        }
+        hex = '#' + hex
+        return {
+          hex,
+          state: true,
+        }
+      })
+      this.createGradient()
     },
     handleColor(userColor, index) {
       this.colors[index].hex = userColor
