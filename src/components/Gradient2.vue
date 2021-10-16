@@ -31,7 +31,7 @@
 <script>
 import Slider from '@/components/ui/Slider'
 import CardOptions from '@/components/ui/CardOptions'
-import LandingOptions from '@/components/ui/LandingOptions2'
+import LandingOptions from '@/components/ui/LandingOptions3'
 import ColorPicker from '@/components/ui/ColorPicker'
 import ExportModal from '@/components/ui/ExportModal'
 
@@ -100,7 +100,6 @@ export default {
   },
   methods: {   
     export () {
-      console.log('showing')
       this.$refs.exportModal.toggle()
     },
     handleColor(userColor, index) {
@@ -108,13 +107,16 @@ export default {
       this.createGradient()
     },
     removeColor(index) {
-      if (index < this.colors.filter(c => c.state).length - 1) {
-        const removedColor = this.colors.splice(index, 1)[0]
-        removedColor.state = false
-        this.colors.push(removedColor)
-      } else {
-        this.colors[index].state = false
-      }
+      // if (index < this.colors.filter(c => c.state).length - 1) {
+      //   const removedColor = this.colors.splice(index, 1)[0]
+      //   removedColor.state = false
+      //   this.colors.push(removedColor)
+      //   console.log(removedColor.hex)
+      //   console.log(this.colors)
+      // } else {
+      //   this.colors[index].state = false
+      // }
+      this.colors[index].state = false
       this.createGradient()
     },
     createGradient() {
@@ -123,10 +125,10 @@ export default {
       let gradientColors = []
       switch (count) {
         case 1: {
-          const colorInput = this.hexToHSL(this.colors[0].hex);  
+          const colorInput = this.hexToHSL(this.colors.filter(c => c.state)[0].hex);  
           const darkColor = this.HSLToHex(+colorInput.h, colorInput.s - 5, +colorInput.l - 15 < 0 ? 0 : +colorInput.l - 15)
           const lightColor = this.HSLToHex(+colorInput.h + 10, colorInput.s, +colorInput.l + 10 > 100 ? 100 : +colorInput.l + 10)
-          gradientColors = [lightColor, this.colors[0].hex, darkColor]
+          gradientColors = [lightColor, this.colors.filter(c => c.state)[0].hex, darkColor]
           break
         }
         case 2: {

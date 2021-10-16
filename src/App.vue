@@ -12,7 +12,7 @@
 import Main from '@/components/Main'
 import Gradient from '@/components/Gradient2'
 import Lines from '@/components/Lines'
-import Canvas from '@/components/Canvas'
+import Canvas from '@/components/Mesh'
 
 export default {
   name: 'App',
