@@ -7,7 +7,7 @@
     </v-container>
     <v-container class="landing-content mt-0 mt-md-16">
       <v-row no-gutters>
-        <v-col cols="8" class="mb-2 mb-md-8">
+        <v-col cols="9" class="mb-2 mb-md-8">
           <h1>
             <span class="text-hero font-title">Generate dynamic backgrounds</span>
             <br>
