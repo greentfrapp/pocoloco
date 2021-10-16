@@ -159,7 +159,6 @@ export default {
   },
   methods: {
     export () {
-      console.log('showing')
       this.$refs.exportModal.toggle()
     },
     initBg (pathId, duration, startDeg, endDeg) {
