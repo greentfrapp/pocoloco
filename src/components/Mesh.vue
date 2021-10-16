@@ -202,20 +202,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-:root {     
-  --gradient: linear-gradient(-45deg, 
-    --color1 0%, 
-    --color2 75%, 
-    --color3 87%, 
-    --color4 100%
-  ); 
-  --time: 10s;
-  --color1: '#3f51b1';
-  --color2: '#f18271';
-  --color3: '#f3a469';
-  --color4: '#d6d2cc';
-}
-
 .page-landing {
   position: relative;
   min-height: 100vh;

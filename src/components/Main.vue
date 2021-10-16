@@ -21,7 +21,7 @@
           <h2 class="mobile-only text-section mb-8 font-title" style="font-weight: 500; color: #313131;">
             Tired of static backgrounds? Head over to the desktop and export this dynamic backdrop!
           </h2>
-          <div class="mb-8 flex">
+          <div class="mb-16 flex">
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Mesh</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Lines')">Lines</v-btn>
