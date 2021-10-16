@@ -358,7 +358,7 @@ function normalizeColor(hexCode) {
                           type: "vec2"
                       }),
                       noiseSpeed: new this.minigl.Uniform({
-                          value: 5e-6 * this.speed
+                          value: this.speed
                       })
                   },
                   type: "struct"
