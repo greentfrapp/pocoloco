@@ -12,9 +12,13 @@ $font-secondary: 'Roboto', sans-serif;
   font-weight: 900;
   letter-spacing: 0.5px;
   font-family: $font-secondary;
-  @media #{map-get($display-breakpoints, 'md-and-down')} {
-    font-size: 4rem;
-    line-height: 4rem;
+  @media only screen and (min-width: #{map-get($grid-breakpoints, 'md')}) {
+    font-size: 5rem;
+    line-height: 5rem;
+  }
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    font-size: 2.8rem;
+    line-height: 2.8rem;
   }
 }
 
@@ -58,6 +62,7 @@ $font-secondary: 'Roboto', sans-serif;
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
     font-size: 28px;
     line-height: 32px;
+    -webkit-text-stroke-width: 0.5px;
   }
 }
 
@@ -69,8 +74,8 @@ $font-secondary: 'Roboto', sans-serif;
   font-family: $font-secondary;
 
   @media #{map-get($display-breakpoints, 'sm-and-down')} {
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 18px;
+    line-height: 22px;
   }
 }
 

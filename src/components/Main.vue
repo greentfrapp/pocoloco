@@ -5,20 +5,23 @@
         <a class="text-lede" href="/">pocoloco</a>
       </nav>
     </v-container>
-    <v-container class="landing-content mt-16">
+    <v-container class="landing-content mt-0 mt-md-16">
       <v-row no-gutters>
-        <v-col cols="8" class="mb-8">
+        <v-col cols="8" class="mb-2 mb-md-8">
           <h1>
             <span class="text-hero font-title">Generate dynamic backgrounds</span>
             <br>
             <span class="text-hero font-title">for your website</span>
           </h1>
         </v-col>
-        <v-col cols="7">
-          <h2 class="text-section mb-8 font-title" style="font-size: 21px; font-weight: 500; color: #313131;">
+        <v-col cols="10" md="7">
+          <h2 class="desktop-only text-section mb-8 font-title" style="font-weight: 500; color: #313131;">
             Tired of static backgrounds? Click Export! for the code you need to get this dynamic backdrop for your own website.
           </h2>
-          <div class="mb-8">
+          <h2 class="mobile-only text-section mb-8 font-title" style="font-weight: 500; color: #313131;">
+            Tired of static backgrounds? Head over to the desktop and export this dynamic backdrop!
+          </h2>
+          <div class="mb-8 flex">
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Mesh</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Lines')">Lines</v-btn>
@@ -64,9 +67,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.desktop-only {
+  display: block;
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    display: none;
+  }
+}
+
+.mobile-only {
+  display: none;
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    display: block;
+  }
+}
+
 .nav-item {
   cursor: pointer;
-  margin: 0px 10px;
+  margin: 10px 10px;
   color: #111;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;

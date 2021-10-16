@@ -77,7 +77,7 @@ export default {
       dy2: 0,
       backgroundColor: '#FFFFFF',
       wave: 5,
-      height: 50,
+      height: 44,
       angle: -12,
       scaledSpeed: 3,
       palettes: [],
@@ -249,7 +249,7 @@ canvas#canvas {
   z-index: 2;
   position: absolute;
   width: 100%;
-  height: 60%;
+  height: 80%;
   --gradient-color-1: #ef008f; 
   --gradient-color-2: #6ec3f4; 
   --gradient-color-3: #7038ff;  

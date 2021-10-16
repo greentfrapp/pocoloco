@@ -56,6 +56,10 @@ export default {
   transition: 0.5s all;
   padding-right: 100px;
 
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    display: none;
+  }
+
   p#options {
     cursor: pointer;
     transform: rotate(270deg);

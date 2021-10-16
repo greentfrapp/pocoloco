@@ -53,6 +53,10 @@ export default {
   transition: 0.5s all;
   padding-bottom: 100px;
 
+  @media #{map-get($display-breakpoints, 'sm-and-down')} {
+    display: none;
+  }
+
   p {
     cursor: pointer;
   }
