@@ -67,23 +67,11 @@ export default {
         { hex: '#ffba27', state: true },
       ],
       showExport: false,
-      time: '0',
       maxSpeed: 11,
-      imgSize: 512,
-      mapSize: 1024,
-      dx1: 0,
-      dy1: 0,
-      dx2: 0,
-      dy2: 0,
       backgroundColor: '#FFFFFF',
-      wave: 5,
       height: 44,
       angle: -12,
       scaledSpeed: 3,
-      palettes: [],
-      heightMap1: [],
-      heightMap2: [],
-      canvas: null,
       gradient: null,
     };
   },
@@ -169,8 +157,10 @@ export default {
       this.updateGradient()
     },
     handleColor(userColor, index) {
-      this.colors[index].hex = userColor
-      this.updateGradient()
+      if (this.colors[index].hex !== userColor) {
+        this.colors[index].hex = userColor
+        this.updateGradient()
+      }
     },
     updateBackground (event) {
       this.backgroundColor = event
@@ -186,8 +176,10 @@ export default {
       selectorNew.setProperty('transform', `rotate(${this.angle}deg) scale(2) translateY(${this.height-100}%)`)
     },
     updateSpeed (event) {
-      this.scaledSpeed = event
-      this.updateGradient()
+      if (this.scaledSpeed !== event) {
+        this.scaledSpeed = event
+        this.updateGradient()
+      }
     },
     updateGradient () {
       if (this.gradient) {
