@@ -183,9 +183,12 @@ export default {
     },
     updateGradient () {
       if (this.gradient) {
+        this.gradient.pause()
         this.gradient.updateSpeed(this.speed)
         this.gradient.initColors(this.colors.map(c => c.hex))
+        this.gradient.minigl.clear()
         this.gradient.connect()
+        // this.gradient.play()
       }
     }
   },
