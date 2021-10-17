@@ -5,7 +5,7 @@
         <a class="text-lede" href="/">pocoloco</a>
       </nav>
     </v-container>
-    <v-container class="landing-content mt-0 mt-md-16">
+    <v-container class="landing-content mt-0 mt-md-16" :class="$vuetify.breakpoint.xs ? '' : 'pa-4 elevation-8 rounded-lg'" style="background: rgba(255,255,255,0.6);" >
       <v-row no-gutters>
         <v-col cols="9" class="mb-2 mb-md-8">
           <h1>
@@ -21,7 +21,7 @@
           <h2 class="mobile-only text-section mb-8 font-title" style="font-weight: 500; color: #313131;">
             Tired of static backgrounds? Head over to the desktop and export this dynamic backdrop!
           </h2>
-          <div class="mb-16 flex">
+          <div class="flex">
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Canvas')">Mesh</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Gradient')">Flow</v-btn>
             <v-btn class="nav-item" @click="$emit('changeBackground', 'Lines')">Lines</v-btn>
