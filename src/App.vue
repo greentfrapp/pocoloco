@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <keep-alive include="Gradient,Lines,Canvas" exclude="Main">
+    <!-- <keep-alive include="Gradient,Lines,Canvas" exclude="Main"> -->
     <component :is="currentBackground" ref="app">
     <Main @export="exportCode" @randomize="randomize" @changeBackground="changeBackground" :background="currentBackground"/>
     </component>
-    </keep-alive>
+    <!-- </keep-alive> -->
   </v-app>
 </template>
 
