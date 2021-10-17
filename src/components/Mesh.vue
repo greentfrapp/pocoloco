@@ -9,7 +9,7 @@
         <div>
         <Slider :value="height" icon="mdi-arrow-up-down" @input="updateHeight($event)" min=10 max=100 step=2 />
         <Slider :value="parseInt(angle)" icon="mdi-angle-acute" @input="updateAngle($event)" min=-60 max=60 step=2 />
-        <Slider :value="scaledSpeed" icon="mdi-run" @input="updateSpeed($event)" min=1 max=10 step=1 />
+        <Slider :value="scaledSpeed" icon="mdi-run" @input="updateSpeed($event)" min=1 max=15 step=1 />
         <ColorPicker
             icon="mdi-palette" 
             initialColor="#FFFFFF"
@@ -132,6 +132,9 @@ export default {
       { hex: '#7038ff', state: true },
       { hex: '#ffba27', state: true },
     ]
+    if (window.matchMedia("only screen and (max-width: 760px)").matches) {
+      this.scaledSpeed = 10
+    }
     this.gradient = new minigl.Gradient();
     this.gradient.initColors(['#ef008f', '#6ec3f4', '#7038ff', '#ffba27'])
     // this.gradient.initColors(this.colors.map(c => c.hex))
